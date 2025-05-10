@@ -1,5 +1,5 @@
 
-# Spring Boot Microservice
+# MyEcommerceSpringMicroservice
 
 This project is a Spring Boot microservice application.
 
