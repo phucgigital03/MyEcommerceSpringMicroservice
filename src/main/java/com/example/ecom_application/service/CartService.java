@@ -50,7 +50,7 @@ public class CartService {
         if (existingCartItem != null) {
             // Update quantity
             existingCartItem.setQuantity(existingCartItem.getQuantity() + request.getQuantity());
-            existingCartItem.setPrice(product.getPrice().multiply(BigDecimal.valueOf(existingCartItem.getQuantity())));
+            existingCartItem.setPrice(product.getPrice());
             cartItemRepository.save(existingCartItem);
         } else {
             // Create new cart item
@@ -58,7 +58,7 @@ public class CartService {
             newCartItem.setUser(user);
             newCartItem.setProduct(product);
             newCartItem.setQuantity(request.getQuantity());
-            newCartItem.setPrice(product.getPrice().multiply(BigDecimal.valueOf(newCartItem.getQuantity())));
+            newCartItem.setPrice(product.getPrice());
             cartItemRepository.save(newCartItem);
         }
 
@@ -80,6 +80,12 @@ public class CartService {
         return userRepository.findById(Long.valueOf(userId))
                 .map(cartItemRepository::findByUser)
                 .orElseGet(List::of);
+    }
+
+    public void clearCart(String userId) {
+        userRepository.findById(Long.valueOf(userId)).ifPresent(
+                cartItemRepository::deleteByUser
+        );
     }
 
 }

@@ -4,6 +4,7 @@ import com.example.ecom_application.dto.ProductRequest;
 import com.example.ecom_application.dto.ProductResponse;
 import com.example.ecom_application.model.Product;
 import com.example.ecom_application.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ProductService {
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
