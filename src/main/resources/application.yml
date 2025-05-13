@@ -4,9 +4,20 @@
 spring:
   application:
     name: ecom-application
-  h2:
-    console:
-      enabled: true
+  #  h2:
+  #    console:
+  #      enabled: true
+  #  datasource:
+  #    url: jdbc:h2:mem:test
   datasource:
-    url: jdbc:h2:mem:test
+    url: jdbc:postgresql://localhost:5433/ecom-microservices
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
